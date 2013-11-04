@@ -12,13 +12,15 @@ Trigger events based on [esquery](https://github.com/jrfeenst/esquery) selectors
 
 ## Examples
 
-```coffee
-dispatcher = new ESDispatcher
-counter = 0
-dispatcher.on 'UpdateExpression[operator="++"] > Identifier[name=i]', -> ++counter
-dispatcher.observe esprimaAST, ->
-  eq 4, counter
-  do done
+```js
+var counter = 0, dispatcher = new ESDispatcher;
+dispatcher.on(
+  'UpdateExpression[operator="++"] > Identifier[name=i]',
+  function(err, node, ancestors){ ++counter; }
+);
+dispatcher.observe(spidermonkeyAST, function(){
+  counter; // 4
+});
 ```
 
 
