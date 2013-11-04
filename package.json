@@ -1,6 +1,6 @@
 {
   "name": "esdispatch",
-  "version": "0.0.0-dev",
+  "version": "0.0.1",
   "description": "trigger events based on esquery selectors during a traversal of a SpiderMonkey format AST",
   "homepage": "https://github.com/michaelficarra/esdispatch",
   "keywords": [],
