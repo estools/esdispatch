@@ -1,0 +1,7 @@
+esdispatch-*.tgz
+.travis.yml
+.gitignore
+dist
+src
+test
+Makefile
