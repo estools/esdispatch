@@ -2,12 +2,12 @@ suite 'Dispatch', ->
 
   test 'basic dispatch', (done) ->
     dispatcher = new ESDispatcher
-    dispatcher.on 'Program', done
+    dispatcher.on 'Program', -> do done
     dispatcher.observe esprimaAST
 
   test 'completion function', (done) ->
     dispatcher = new ESDispatcher
-    dispatcher.observe esprimaAST, done
+    dispatcher.observe esprimaAST, -> do done
 
   test 'basic dispatch', (done) ->
     dispatcher = new ESDispatcher

@@ -43,7 +43,7 @@ module.exports = class ESDispatcher
         for own selector, listeners of @_listeners
           if esquery.matches node, parsedSelectors[selector], ancestry
             for listener in listeners
-              listener null, node, ancestry
+              listener node, ancestry
         return
       leave: ->
         do ancestry.shift
