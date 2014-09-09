@@ -64,3 +64,23 @@ suite 'Dispatch', ->
     dispatcher.observe esprimaAST, ->
       eq 1, counter
       do done
+
+
+  suite 'enter/leave', (done) ->
+
+    test 'basic dispatch', (done) ->
+      dispatcher = new ESDispatcher
+      dispatcher.on 'Program', enter: -> do done
+      dispatcher.observe esprimaAST
+
+    test 'ordering', (done) ->
+      dispatcher = new ESDispatcher
+      counter = 0
+      dispatcher.on 'Program',
+        enter: ->
+          eq 0, counter
+          ++counter
+        leave: ->
+          eq 1, counter
+          do done
+      dispatcher.observe esprimaAST

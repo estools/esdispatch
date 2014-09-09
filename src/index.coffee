@@ -43,10 +43,16 @@ module.exports = class ESDispatcher
         for own selector, listeners of @_listeners
           if esquery.matches node, parsedSelectors[selector], ancestry
             for listener in listeners
+              unless typeof listener is 'function'
+                listener = listener.enter
               listener node, ancestry
         return
-      leave: ->
+      leave: (node) =>
         do ancestry.shift
+        for own selector, listeners of @_listeners
+          if esquery.matches node, parsedSelectors[selector], ancestry
+            for listener in listeners when typeof listener isnt 'function'
+              listener.leave? node, ancestry
         return
     do done if done?
     return
